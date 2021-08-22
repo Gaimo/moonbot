@@ -1,8 +1,19 @@
+-- DISCORDIA
 local discordia = require('discordia')
 local client = discordia.Client()
 
+-- IMPORT
+discordia.extensions.string()
+
+-- Moonbot vars
 local commands = {}
-local prefix = ! -- default prefix.
+local prefix = "!" -- default prefix.
+
+local function ping(message)
+    message:reply("pong")
+end
+
+commands[prefix.."ping"] = ping
 
 -- checks if the user has entered a valid command.
 local function isValidCommand(message)
@@ -11,8 +22,8 @@ local function isValidCommand(message)
     local firstWord = table.remove(arguments, 1)
     if not firstWord then return end
 
-	if commands[prefix..firstWord:lower()] then
-        commands[prefix..firstWord:lower()](message)
+	if commands[firstWord:lower()] then
+        commands[firstWord:lower()](message)
     end
 end
 
