@@ -3,16 +3,18 @@ local discordia = require('discordia')
 local client = discordia.Client()
 
 -- IMPORT
-discordia.extensions.string()
+discordia.extensions.string() -- load the discordia extensions
 
 -- Moonbot vars
 local commands = {}
 local prefix = "!" -- default prefix.
 
+-- [[ functions commands ]]
 local function ping(message)
     message:reply("pong")
 end
 
+-- [[ commands ]]
 commands[prefix.."ping"] = ping
 
 -- checks if the user has entered a valid command.
