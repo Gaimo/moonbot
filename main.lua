@@ -21,11 +21,11 @@ commands[prefix.."ping"] = ping
 local function isValidCommand(message)
 	local content = message.content
 	local arguments = content:split(" ")
-    local firstWord = table.remove(arguments, 1)
-    if not firstWord then return end
+    local command = table.remove(arguments, 1)
+    if not command then return end
 
-	if commands[firstWord:lower()] then
-        commands[firstWord:lower()](message)
+	if commands[command:lower()] then
+        commands[command:lower()](message)
     end
 end
 
@@ -37,4 +37,4 @@ client:on('messageCreate', function(message)
 	isValidCommand(message)
 end)
 
-client:run('Bot '..io.open("./token.txt"):read())
+client:run('Bot '..io.open("./token.txt"):read()) -- read token 
