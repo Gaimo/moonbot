@@ -1,3 +1,9 @@
-*
-!.gitignore
-!main.lua
+deps
+
+*.exe
+*.bat
+*.log
+
+gateway.json
+
+token.txt
