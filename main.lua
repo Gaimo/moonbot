@@ -2,6 +2,9 @@
 local discordia = require('discordia')
 local client = discordia.Client()
 
+-- Commands
+local ping = require("ping")
+
 -- IMPORT
 discordia.extensions.string() -- load the discordia extensions
 
@@ -9,13 +12,8 @@ discordia.extensions.string() -- load the discordia extensions
 local commands = {}
 local prefix = "!" -- default prefix.
 
--- [[ functions commands ]]
-local function ping(message)
-    message:reply("pong")
-end
-
 -- [[ commands ]]
-commands[prefix.."ping"] = ping
+commands[prefix.."ping"] = ping.ping
 
 -- checks if the user has entered a valid command.
 local function isValidCommand(message)
