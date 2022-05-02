@@ -4,10 +4,15 @@ local language = {
         EN = "Enter a valid userID!",
         BR = "Digite um id de usuário válido!"
     },
-
+    
     title = {
-        EN = "To see the larger image click here",
-        BR = "Para ver a imagem maior clique aqui"
+        EN = "Profile image",
+        BR = "Imagem de perfil"
+    },
+
+    description = {
+        EN = "To see the larger image [click here]",
+        BR = "Para ver a imagem maior [clique aqui]"
     },
 }
 
@@ -23,7 +28,7 @@ function profile.getImage(message, lang)
         message:reply{
             embed = {
                 title = language.title[lang],
-                url = user:getAvatarURL(1024),
+                description = language.description[lang].."("..user:getAvatarURL(1024)..")",
                 image = {url = user:getAvatarURL(256)}
             }
         }
