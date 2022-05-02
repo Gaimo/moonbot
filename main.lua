@@ -3,7 +3,8 @@ local discordia = require('discordia')
 local client = discordia.Client()
 
 -- Commands
-local ping = require("ping")
+local ping = require("modules/ping")
+local profile = require("modules/profile")
 
 -- IMPORT
 discordia.extensions.string() -- load the discordia extensions
@@ -11,9 +12,15 @@ discordia.extensions.string() -- load the discordia extensions
 -- Moonbot vars
 local commands = {}
 local prefix = "!" -- default prefix.
+local lang = "BR" -- default language.
+
+local function addCommand(command, func)
+	commands[prefix..command] = func
+end
 
 -- [[ commands ]]
-commands[prefix.."ping"] = ping.ping
+addCommand("ping", ping.get)
+addCommand("profile", profile.getImage)
 
 -- checks if the user has entered a valid command.
 local function isValidCommand(message)
@@ -23,7 +30,7 @@ local function isValidCommand(message)
     if not command then return end
 
 	if commands[command:lower()] then
-        commands[command:lower()](message)
+        commands[command:lower()](message, lang)
     end
 end
 
