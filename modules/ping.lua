@@ -1,7 +1,6 @@
 local ping = {}
 
-function ping.ping(message)
-    print(message)
+function ping.get(message)
     message:reply("pong")
 end
 
