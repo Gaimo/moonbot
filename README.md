@@ -8,3 +8,7 @@
 - To install Discordia, run `lit install SinisterRectus/discordia`
 - Create a `token.txt` file and add your bot's token.
 - Run your bot script using, for example, `luvit main.lua`
+
+### Commands
+- !profile 
+- !ping
