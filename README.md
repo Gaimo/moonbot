@@ -10,5 +10,5 @@
 - Run your bot script using, for example, `luvit main.lua`
 
 ### Commands
-- !profile 
+- !profile userID, returns the user's profile picture.
 - !ping
