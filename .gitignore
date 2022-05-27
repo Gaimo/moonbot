@@ -3,6 +3,7 @@ deps
 *.exe
 *.bat
 *.log
+*.dll
 
 gateway.json
 
