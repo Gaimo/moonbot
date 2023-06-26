@@ -1,23 +1,45 @@
+-- Import Utils
 local ut = require("./modules/utils")
 
-local voice = {}
-voice.connections = {}
+local voice = {
+	connections = {}
+}
 
 function voice.join(message, lang)
 	if ut.isPrivateMessage(message) then
 		local reply = {
 			["EN"] = "",
-			["BR"] = "Qual canal você quer que eu entre? Existem muitos XD."
+			["BR"] = "Esse comando não funciona no privado!"
 		}
 		message:reply(reply[lang])
 		return
 	end
 
 	local guild = message.guild.id
-	if not voice.connections[guild] then 
+	
+	-- Se não estiver conectado a nenhum canal na guild então conecta
+	if not voice.connections[guild] then
+		-- Se o autor não estiver em um canal de voz
+		if not message.member.voiceChannel then 
+			local reply = {
+				["BR"] = "Você não está em um canal de voz.",
+			}
+
+			message:reply(reply[lang])
+			return
+		end
+
 		voice.connections[guild] = message.member.voiceChannel:join()
 		voice.connections[guild]:playFFmpeg("./memes/yah.mp3")
+		return 
+		
 	end
+
+	local reply = {
+		["BR"] = "Já estou em um canal de voz!",
+	}
+
+	message:reply(reply[lang])
 end
 
 function voice.leave(channel, guild)
@@ -32,7 +54,7 @@ function voice.disconnect(member, channel)
 	-- Verifica se o bot saiu da call.
 	if member.user.id == "879025506870231121" then
 		local guild = channel.guild.id
-		voice.leave(channel, guild)        
+		voice.leave(channel, guild)
 	end
 end
 
